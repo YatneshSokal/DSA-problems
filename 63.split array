@@ -1,0 +1,39 @@
+import java.util.*;
+public class Solution {
+    public static int countpartitions(int []a,int maxSum){
+        int n=a.length;
+        int partitions=1;
+        int subarraysum=0;
+        for (int i = 0; i < n; i++) {
+            if (subarraysum+a[i]<=maxSum) {
+                subarraysum+=a[i];
+            }
+            else {
+                partitions++;
+                subarraysum=a[i];
+            }
+           
+        } return partitions;
+    }
+    public static int largestSubarraySumMinimized(int []a, int k) {
+        // Write Your Code Here
+        int low=a[0];
+        int high=0;
+
+        for (int i = 0; i < a.length; i++) {
+            low =Math.max(low,a[i]);
+            high+=a[i];
+        }
+
+        while (low<=high) {
+        int mid=(low+high)/2;
+        int partitions=countpartitions(a, mid);
+        if (partitions>k) {
+            low=mid+1;
+        }
+        else {
+            high=mid-1;}
+        }
+        return low;
+    }
+}
