@@ -1,0 +1,71 @@
+/****************************************************************
+
+ Following is the class structure of the linked list:
+
+ class Node
+ {
+     public int data;
+     public Node next;
+     public Node prev;
+
+     Node()
+     {
+         this.data = 0;
+         this.next = null;
+         this.prev = null;
+     }
+
+     Node(int data)
+     {
+         this.data = data;
+         this.next = null;
+         this.prev = null;
+     }
+
+     Node(int data, Node next, Node prev)
+     {
+         this.data = data;
+         this.next = next;
+         this.prev = prev;
+     }
+ }
+
+ *****************************************************************/
+public class Solution {
+    public static Node deleteNode(Node head, int k) {
+            // Write Your Code Here.
+        if(head==null)
+        return null;
+     Node  temp=head;
+        if(k==1)
+        {
+       //delete head;
+            head=head.next;
+            return head;
+        }
+        int cnt=0;
+        while(temp!=null)
+        {
+            cnt++;
+            if(cnt==k)
+            {
+                break;
+            }
+            temp=temp.next;
+        }
+        if(temp==null)//if k th element not exist
+        return head;
+        Node front=temp.next;
+        Node back=temp.prev;
+ 
+         if(front ==null)//if kth element is tail
+         {
+              back.next=null;
+              return head;
+         }
+        //if k th element is somewhere between
+         back.next=front;
+         front.prev=back;
+         return head;
+    }
+}
