@@ -1,0 +1,14 @@
+//Reverse Bits
+public class Solution {
+	public static long reverseBits(long N) {
+     N = 123;
+    long num = N;
+    long reverse = 0;
+    while(N!=0)
+    {
+        int digit = N%10;
+        reverse = reverse*10+digit;
+        N = N/10;
+    }
+    System.out.println("The reverse of the %d is %d"+num+reverse);
+	}
